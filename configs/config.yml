@@ -1,0 +1,36 @@
+server:
+  name: go-sql-layer-architecture-sample
+  port: 8080
+
+sql:
+  driver: postgres
+  data_source_name: postgres://xkjofgbu:MKmT3B0PPIZ6pr057wEHFUMvtad5nXex@satao.db.elephantsql.com/xkjofgbu
+
+log:
+  level: info
+  caller_level: "debug,error,panic"
+  caller_skip: 5
+  map:
+    time: "@timestamp"
+    msg: message
+    stacktrace: stacktrace
+    caller: caller
+    function: func
+
+middleware:
+  log: true
+  skips: /health
+  request: request
+  response: response
+  size: size
+
+client:
+  endpoint:
+    url: "http://localhost:8080/users"
+    timeout: 1s
+  log:
+    log: true
+    size: size
+    status: status
+    request: request
+    response: response
